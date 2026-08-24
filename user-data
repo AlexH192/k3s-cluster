@@ -1,0 +1,24 @@
+#cloud-config
+autoinstall:
+  version: 1
+  interactive-sections:
+    - none
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+  identity:
+    hostname: wyse5070
+    username: ubuntu
+    password: "$6$exMPL$k53q8xEb1UDKh3JyE4M3hG0.G8V1"
+  ssh:
+    install-server: true
+    allow-pw: true
+  network:
+    version: 2
+    ethernets:
+      match:
+        name: "e*"
+      dhcp4: true
+  storage:
+    layout:
+      name: direct
