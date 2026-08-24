@@ -7,9 +7,9 @@ autoinstall:
   keyboard:
     layout: us
   identity:
-    hostname: wyse5070
-    username: ubuntu
-    password: "$6$exMPL$k53q8xEb1UDKh3JyE4M3hG0.G8V1"
+    hostname: k3s-master
+    username: geriatricgoose
+    password: "[Censored for security]"
   ssh:
     install-server: true
     allow-pw: true
