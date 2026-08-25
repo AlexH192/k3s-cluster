@@ -7,7 +7,7 @@ autoinstall:
   identity:
     hostname: k3s-master
     username: geriatricgoose
-    password: "$1$MB49ihyN$1X5XbNmANggN2DRQSwbXu1"
+    password: "[Censored for security]"
   ssh:
     install-server: true
     allow-pw: true
