@@ -11,8 +11,10 @@ A stick of 4GB SO-DIMM RAM was installed in addition to the Dell Wyse 5070's exi
 
 Pictured below are the RAM and SSD components before installation, as well as the Dell Wyse 5070 after installation.
 
-<img width="1182" height="666" alt="4GB SO-DIMM RAM stick and 128GB SSD" src="https://github.com/user-attachments/assets/bc046d58-bebb-4be8-a0c5-19e5afbdc558" />
-<img width="1330" height="1800" alt="Dell Wyse 5070 after replacement" src="https://github.com/user-attachments/assets/09025074-256d-40de-a376-689d5821c33c" />
+<img width="1182/3" height="666/3" alt="4GB SO-DIMM RAM stick and 128GB SSD" src="https://github.com/user-attachments/assets/bc046d58-bebb-4be8-a0c5-19e5afbdc558" />
+<img width="3294" height="3003" alt="IMG_5675" src="https://github.com/user-attachments/assets/303b3203-83f1-45c1-8e34-53646a1d2ca2" />
+
+
 
 
 
