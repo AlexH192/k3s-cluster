@@ -12,8 +12,7 @@ Pictured below are the RAM and SSD components before installation, as well as th
 
 <img width="366" height="333" alt="SO-DIMM stick and SSD before installation" src="https://github.com/user-attachments/assets/c55aeca1-7d4d-43c0-a43e-c5b7b723f6b3" />
 <img width="366" height="333" alt="Dell Wyse 5070 after installation" src="https://github.com/user-attachments/assets/303b3203-83f1-45c1-8e34-53646a1d2ca2" />
-
-
+<br> <br>
 Another point of concern was the faulty Wi-Fi card the Dell Wyse 5070 came with. Due to header mismatch between the Wi-Fi card and the device, the machine would return the error message:
 
 iwlwifi unable to change power state from d3cold to
