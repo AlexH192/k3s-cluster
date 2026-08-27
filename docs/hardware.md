@@ -25,6 +25,6 @@ As such, wireless internet was out of the option and I proceeded with uninstalli
 <br>
 <br>
 Lastly, I diagnosed and solved a dead CMOS battery issue that was halting boot sequences. BIOS settings would reset each boot, leading to the suspicion of a dead CMOS battery. Upon replacement, normal functionality returned. The faulty CMOS battery is pictured below. It was replaced with a new CR2032 3V coin cell battery.
-
+<br>
 <img width="350" height="325" alt="Faulty CR2032 3V CMOS battery" src="https://github.com/user-attachments/assets/e0ede00e-ff96-4947-8a8a-b8a5092a57aa" />
 
