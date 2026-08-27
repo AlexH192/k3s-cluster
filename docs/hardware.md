@@ -21,10 +21,10 @@ hw_rev=0xFFFFFFFF, PCI issues?
 
 As such, wireless internet was out of the option and I proceeded with uninstalling the Wi-Fi card in order to avoid future conflicts or error messages. The uninstalled Intel 7265 card is pictured below.
 
-<img width="295" height="166" alt="Intel 7265 Wi-Fi card" src="https://github.com/user-attachments/assets/10c917a5-44a0-4131-864d-bb95def6884b" />
+<img width="442" height="249" alt="Intel 7265 Wi-Fi card" src="https://github.com/user-attachments/assets/10c917a5-44a0-4131-864d-bb95def6884b" />
 <br>
 <br>
 Lastly, I diagnosed and solved a dead CMOS battery issue that was halting boot sequences. BIOS settings would reset each boot, leading to the suspicion of a dead CMOS battery. Upon replacement, normal functionality returned. The faulty CMOS battery is pictured below. It was replaced with a new CR2032 3V coin cell battery.
 <br>
-<img width="350" height="325" alt="Faulty CR2032 3V CMOS battery" src="https://github.com/user-attachments/assets/e0ede00e-ff96-4947-8a8a-b8a5092a57aa" />
+<img width="220" height="200" alt="Faulty CR2032 3V CMOS battery" src="https://github.com/user-attachments/assets/e0ede00e-ff96-4947-8a8a-b8a5092a57aa" />
 
