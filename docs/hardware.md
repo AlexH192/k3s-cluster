@@ -14,15 +14,13 @@ Pictured below are the RAM and SSD components before installation, as well as th
 <img width="366" height="333" alt="Dell Wyse 5070 after installation" src="https://github.com/user-attachments/assets/303b3203-83f1-45c1-8e34-53646a1d2ca2" />
 
 
+Another point of concern was the faulty Wi-Fi card the Dell Wyse 5070 came with. Due to header mismatch between the Wi-Fi card and the device, the machine would return the error message:
 
+iwlwifi unable to change power state from d3cold to
+hw_rev=0xFFFFFFFF, PCI issues?
 
+As such, wireless internet was out of the option and I proceeded with uninstalling the Wi-Fi card in order to avoid future conflicts or error messages. The uninstalled Intel 7265 card is pictured below.
 
-<img width="1182" height="666" alt="HP t630 before part swap" src="https://github.com/user-attachments/assets/0fe295a4-770b-43fd-9779-601f54cd3766" />
-
-
-
-Mention swapping/upgrading parts, installing WiFi chip, with photos.
-
-<img width="1182" height="666" alt="Intel 7265 Wi-Fi card" src="https://github.com/user-attachments/assets/10c917a5-44a0-4131-864d-bb95def6884b" />
+<img width="295" height="166" alt="Intel 7265 Wi-Fi card" src="https://github.com/user-attachments/assets/10c917a5-44a0-4131-864d-bb95def6884b" />
 
 Diagnosed and solved a dead CMOS battery issue that was halting boot sequences, largely due to the hardware's age. 
