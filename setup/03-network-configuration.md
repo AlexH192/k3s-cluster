@@ -4,7 +4,7 @@ Due to aggressive power-saving settings on this hardware, kernel and network con
 
 ## Kernel Parameter Injections (GRUB)
 As mentioned in `docs/troubleshooting.md` issue 3:
-Appended `pcie_aspm=off pcie_port_pm=off` to kernel boot parameters. This was injected into the `autoinstall/user-data` file in order to rewrite `/etc/default/grub`. 
+<br>Appended `pcie_aspm=off pcie_port_pm=off` to kernel boot parameters. This was injected into the `autoinstall/user-data` file in order to rewrite `/etc/default/grub`. 
 
 ## Netplan Configuration
 As mentioned in `docs/troubleshooting.md` issue 3:
