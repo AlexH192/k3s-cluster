@@ -8,7 +8,7 @@ As mentioned in `docs/troubleshooting.md` issue 3:
 
 ## Netplan Configuration
 As mentioned in `docs/troubleshooting.md` issue 3:
-Created missing network config file naming and configuring the network card:
+<br>Created missing network config file naming and configuring the network card:
 
 ```bash
 sudo bash -c 'cat << EOF > /etc/netplan/01-netcfg.yaml
