@@ -1,6 +1,6 @@
 # Resolving Issues
 
-**Issue 1: Wi-Fi Card Failed due to Incompatibility**
+**29/3/2026 Issue 1: Wi-Fi Card Failed due to Incompatibility**
 Error message returned upon checking status of Wi-Fi card:
 
 !!! unknown header type 7f
@@ -14,13 +14,13 @@ iwlwifi unable to change power state from d3cold to hw_rev=0xFFFFFFFF, PCI issue
 * Solution: Physically removed the incompatible card and pivoted to internet connection per ethernet instead of wireless.
 
 
-**Issue 2: Headless Boot Stuck on BIOS Error Screen (CMOS/RTC)**
+**23/8/2026 Issue 2: Headless Boot Stuck on BIOS Error Screen (CMOS/RTC)**
 * Symptom: The node fails to boot headlessly after a power cycle, failing to boot into Linux and connecting to the network. Attaching a monitor reveals "Time-of-day not set" and "Incomplete System Configuration" BIOS errors requiring an F1 keypress to bypass.
 * Cause: A faulty CMOS battery causes some BIOS settings to reset each boot -- including the Real-Time Clock (RTC) and System Config settings.
 * Solution: Replaced the CR2032 3V coin cell battery on the motherboard; system-critical processes like RTC are now kept alive by the battery and headless booting is possible.
 
 
-**Issue 3: Network Interface Power-Down**
+**26/8/2026 Issue 3: Network Interface Power-Down**
 * Symptom: Ethernet port LED is active during standby but turns off shortly after Ubuntu boots, it seems Ubuntu itself is killing network access.
 * Cause: Linux kernel restricts the network card with PCIe power management and Energy Efficient Ethernet (EEE) states, causing it to shut down instantly after boot. Missing network config file caused Linux to have problems recognizing the network card.
 * Solution: Appended `pcie_aspm=off pcie_port_pm=off` to kernel boot parameters. This was injected into the autoinstall `user-data` file in order to rewrite `/etc/default/grub`. Created missing network config file naming and configuring the network card:
@@ -36,3 +36,8 @@ network:
 EOF'
 ```
 
+
+**27/8/2026 Issue 4: PXE Boot on Secondary Nodes**
+* Symptom: With the master node configured to act as the PXE server, worker nodes are not sending PXE requests.
+* Cause: The PXE boot setting was disabled in the worker nodes' BIOS settings, causing them to boot straight into their existing operating system.
+* Solution: Enabled PXE boot in both worker nodes' BIOS settings.
