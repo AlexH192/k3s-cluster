@@ -38,6 +38,11 @@ sudo nano /etc/networkd-dispatcher/routable.d/wol
 ethtool -s enp2s0 wol g
 sudo chmod +x /etc/networkd-dispatcher/routable.d/wol
 ```
+Expand root partition storage from LVM's 50% to 100% in order to use all 128GB of the SSD drive:
+```
+sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+```
 
 ## Installation of Kubernetes K3s and Modules
 
