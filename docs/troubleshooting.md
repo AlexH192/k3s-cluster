@@ -25,12 +25,13 @@ iwlwifi unable to change power state from d3cold to hw_rev=0xFFFFFFFF, PCI issue
 * Cause: Linux kernel restricts the network card with PCIe power management and Energy Efficient Ethernet (EEE) states, causing it to shut down instantly after boot. Missing network config file caused Linux to have problems recognizing the network card.
 * Solution: Appended `pcie_aspm=off pcie_port_pm=off` to kernel boot parameters. This was injected into the autoinstall `user-data` file in order to rewrite `/etc/default/grub`. Created missing network config file naming and configuring the network card:
 
-  sudo bash -c 'cat << EOF > /etc/netplan/01-netcfg.yaml
-    network:
-     version: 2
-     renderer: networkd
-      ethernets:
-        enp2s0:
-          dhcp4: true
-    EOF'
+sudo bash -c 'cat << EOF > /etc/netplan/01-netcfg.yaml
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp2s0:
+      dhcp4: true
+EOF'
+
 
