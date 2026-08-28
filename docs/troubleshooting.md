@@ -1,6 +1,6 @@
 # Resolving Issues
 
-<u>**29/3/2026 | Issue 1: Wi-Fi Card Failed due to Incompatibility**</u>
+<u>29/3/2026 | Issue 1: Wi-Fi Card Failed due to Incompatibility</u>
 Error message returned upon checking status of Wi-Fi card:
 
 !!! unknown header type 7f
