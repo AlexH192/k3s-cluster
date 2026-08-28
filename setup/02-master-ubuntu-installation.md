@@ -3,6 +3,7 @@
 The Dell Wyse 5070 acts as the control plane and master node of the entire cluster. Because the other nodes rely on it for PXE booting, Ubuntu must first be manually installed on it via USB flash drive.
 
 ## Flashing Installer
+The Ubuntu ISO is flashed onto the USB flash drive.
 *   OS Version: Ubuntu 24.04.4 LTS Server from https://ubuntu.com/download/server
 *   Tool Used: BalenaEtcher
 
