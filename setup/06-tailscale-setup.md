@@ -1,6 +1,6 @@
 
 
-Configure kubectl to eliminate need for SSH and let Tailscale handle authentication (This feature is finished in `setup/05-tailscale-setup.md`):
+Configure kubectl to eliminate need for SSH and let Tailscale handle authentication (This feature is finished in `05-tailscale-setup.md`):
 ```
 scp geriatricgoose@k3s-master:/home/geriatricgoose/.kube/config ~/.kube/config
 ```
