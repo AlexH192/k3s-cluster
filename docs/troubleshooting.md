@@ -46,4 +46,4 @@ EOF'
 **27/8/2026 | Issue 5: Port 80 being intercepted, nginx blocked**
 * Symptom: nginx was unable to run on port 80, and returned an error message.
 * Cause: Another process, Traefik, was intercepting traffic to 192.168.1.16:80 as its own.
-* Solution: Moved nginx to port 8888, a port with no other processes listening.
+* Solution: Moved nginx to port 192.168.1.16:8888, a port with no other processes listening.
