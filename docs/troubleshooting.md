@@ -41,3 +41,9 @@ EOF'
 * Symptom: With the master node configured to act as the PXE server, worker nodes are not sending PXE requests.
 * Cause: The PXE boot setting was disabled in the worker nodes' BIOS settings, causing them to boot straight into their existing operating system.
 * Solution: Enabled PXE boot in both worker nodes' BIOS settings.
+
+
+**27/8/2026 | Issue 5: Port 80 being intercepted, nginx blocked**
+* Symptom: nginx was unable to run on port 80, and returned an error message.
+* Cause: Another process, Traefik, was intercepting traffic to 192.168.1.16:80 as its own.
+* Solution: Moved nginx to port 8888, a port with no other processes listening.
