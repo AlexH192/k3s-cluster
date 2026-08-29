@@ -1,5 +1,6 @@
 # Power Management & Miscellaneous
 
+## Wake-on-LAN
 Wake-on-LAN was enabled and made persistent in `05-cluster-setup.md`.
 
 <br><br>To wake nodes up, the MAC address of their network controllers is needed. To find this:
@@ -10,4 +11,12 @@ Wake-on-LAN was enabled and made persistent in `05-cluster-setup.md`.
 To put system to sleep, run (while connected via SSH): `sudo systemctl suspend`
 To wake system up, run (in a terminal window on the external device connected via Tailscale): `wakeonlan [MAC address here]`
 
-<br><br>After the system wakes up, SSH connection can be performed via `ssh username@hostname` (in my case: `ssh geriatricgoose@k3s-master`).
+<br>After the system wakes up, SSH connection can be performed via `ssh username@hostname` (in my case: `ssh geriatricgoose@k3s-master`).
+
+## Sensors & monitoring
+Install sensor packages:
+```
+sudo apt install lm-sensors -y
+sudo sensors-detect --auto
+```
+To manually check sensor outputs, run `sensors`.
