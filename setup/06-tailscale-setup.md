@@ -24,4 +24,4 @@ scp geriatricgoose@k3s-master:/home/geriatricgoose/.kube/config ~/.kube/config
 
 <br>Verify the nodes are running correctly with `kubectl get pods -A`
 <br>An example is shown below:
-<img width="665" height="131" alt="kubectl get pods output" src="https://github.com/user-attachments/assets/06676286-0daf-4395-b848-766eb52ecad7" />
+<br><img width="665" height="131" alt="kubectl get pods output" src="https://github.com/user-attachments/assets/06676286-0daf-4395-b848-766eb52ecad7" />
