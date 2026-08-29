@@ -21,7 +21,20 @@ Configure kubectl (installed in `05-k3s-cluster-setup.md`) to eliminate need for
 scp geriatricgoose@k3s-master:/home/geriatricgoose/.kube/config ~/.kube/config
 ```
 ^^ where geriatricgoose is the username and k3s-master is the master node's name (hostname).
-
-<br>Verify the nodes are running correctly with `kubectl get pods -A`
-<br>An example is shown below:
-<br><img width="665" height="131" alt="kubectl get pods output" src="https://github.com/user-attachments/assets/06676286-0daf-4395-b848-766eb52ecad7" />
+<br><br>Modify the `/etc/systemd/system/k3s.service` file to include the node's Tailscale IP:
+```
+sudo nano /etc/systemd/system/k3s.service
+```
+To the ExecStart variables, append the tailscale IP with `—tls-san [IP here]` so the ExecStart lines look as follows:
+```
+ExecStart=/usr/local/bin/k3s \
+    server \
+        --tls-san [IP here]
+```
+Restart systemd daemon and k3s to apply the changes:
+```
+sudo systemctl daemon-reload
+sudo systemctl restart k3s
+```
+With kubectl installed and Tailscale connected (optimally via the desktop app) on the external device, commands can now be run on the cluster without the need to SSH in:
+<br><img width="600" height="56" alt="kubectl get nodes example" src="https://github.com/user-attachments/assets/e2e30156-4670-4036-a8d2-176a0ac520ae" />
