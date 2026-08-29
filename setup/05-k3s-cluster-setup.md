@@ -65,6 +65,7 @@ Install kubectl (command line tool for Kubernetes):
 ```
 brew install kubectl
 ```
+Install kubectl on the machine that is going to connect and control the cluster remotely using the same command.
 ## Configuration of Web Dashboard Using Headlamp
 A web dashboard was set up in order to monitor all nodes' tasks, temperature and activity.
 'Headlamp' was the web dashboard of choice: https://github.com/kubernetes-sigs/headlamp
