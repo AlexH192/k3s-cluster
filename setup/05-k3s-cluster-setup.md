@@ -66,7 +66,7 @@ Install kubectl (command line tool for Kubernetes):
 brew install kubectl
 ```
 Install kubectl on the machine that is going to connect and control the cluster remotely using the same command.
-<br>Verify the nodes are running correctly with `kubectl get pods -A`
+<br><br>Verify the nodes are running correctly with `kubectl get pods -A`
 <br>An example is shown below:
 <br><img width="665" height="131" alt="kubectl get pods output" src="https://github.com/user-attachments/assets/06676286-0daf-4395-b848-766eb52ecad7" />
 
