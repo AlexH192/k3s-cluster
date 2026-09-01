@@ -1,6 +1,6 @@
 # Node Network Configuration
 
-Due to aggressive power-saving settings on this hardware, kernel and network configs changes must be made in order to create a stable connection.
+Due to aggressive power-saving settings on this hardware, kernel and network configs changes must be made in order to create a stable connection. Static IP addresses should also be assigned to all nodes to further ensure stability.
 
 ## Kernel Parameter Injections (GRUB)
 As mentioned in `docs/troubleshooting.md` issue 3:
@@ -21,3 +21,11 @@ network:
 EOF'
 ```
  **Application:** `sudo netplan apply`
+
+## Static IP Address Assignment
+Each of the three nodes should be assigned a static IP address in order to ensure stability and ease of access. To do this:
+
+* Log into the home router's admin panel
+* Navigate to the DHCP Reservations section
+* Add the MAC address of each node and assign it a static IP. Note that this IP must be outside of the general DHCP pool to avoid clashes.
+* Reboot all nodes.
