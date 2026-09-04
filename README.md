@@ -5,7 +5,7 @@ This project is a three-node, bare-metal Kubernetes cluster built on repurposed 
 The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and placing trades via API connections.
 <a href="https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents.git" target="_blank" rel="noopener noreferrer">Trading Bot Repository</a>
 
-## Architecture & Topology
+## Architecture and Topology
 The physical cluster consists of three repurposed thin-client computers connected via an unmanaged 8-port gigabit switch. The most powerful computer, a Dell Wyse 5070, is used as the main access point and control plane (master node). It also serves as the PXE boot server that provisions the two other worker nodes over the network.
 When hosting the trading bot, the server also contacts external APIs to pull information, execute trades and send notifications.
 
@@ -84,3 +84,9 @@ Node 2     |                  |               |         |
   * Due to the headless design of the cluster, physically connecting to the node for access defeats the whole purpose, and would not be viable in a large-scale enterprise environment.
   * Remote access is now possible from anywhere with an internet connection. Previously, one could only connect from the same network. With Tailscale, SSH is now available from anywhere, allowing for remote troubleshooting and modification.
  
+## Troubleshooting and Lessons Learned
+The most significant issues solved in this project are related to headless networking (as documented in `docs/troubleshooting.md`):
+* Headless network connection failed due to misconfigured netplan file
+* Network interface perpetual low-power state due to misconfigured boot parameters
+
+<br>During the long process of diagnosing and solving the networking issues, it was made clear that even one small mistake in the network configuration settings can cause a complete outage. Default configurations, both in UEFI and Linux, are likely to cause issues so special care must be taken in the initial configuration process.
