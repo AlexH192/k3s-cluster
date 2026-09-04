@@ -29,3 +29,7 @@ Each of the three nodes should be assigned a static IP address in order to ensur
 * Navigate to the DHCP Reservations section
 * Add the MAC address of each node and assign it a static IP. Note that this IP must be outside of the general DHCP pool to avoid clashes.
 * Reboot all nodes.
+
+On the node:
+* Configure static IP by changing netplan file as in `k3s/manifests/networking-configs`.
+* Run `sudo netplan apply` to apply changes.
