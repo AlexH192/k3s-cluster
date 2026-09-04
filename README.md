@@ -1,5 +1,5 @@
 # Bare-metal K3s Cluster & Trading Bot Infrastructure
-
+## TODO: IMPLEMENT NODE FAILOVER W/ HEARTBEAT, TESTING NODE DEATHS WITH CHAOSMONKEY***
 This project is a three-node, bare-metal Kubernetes cluster built on repurposed enterprise thin clients, featuring automated PXE OS installation & configuration, Wake-on-LAN power management and high-availability architecture to ensure maximum uptime.
 
 The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and placing trades via API connections.
@@ -72,3 +72,15 @@ Worker     |  HP t630         | AMD GX-420GI  | 4GB DDR4| 16GB eMMC
 Node 2     |                  |               |         |
 
 ```
+## Capabilities and Features
+* **No-touch OS installation and provisioning:** The worker nodes' operating systems are set up completely automatically via PXE boot and the injected network configuration settings. Once set up, they automatically request (and are assigned) an IP, connecting them to the rest of the network and, most importantly, the master node.
+* **Trading bot run via K3s:** Containerizing the trading bot application allows for better management of computing power and gives access to advanced failover features. When a pod crashes, Kubernetes instantly detects and restarts it in order to maintain maximum uptime. When an update to the trading bot is pushed to the node, Kubernetes executes a rolling update in order to minimize downtime and verify the health of new scripts before deployment.
+* **Node Failover:** If one of the nodes suffers a power failure or crashes in some way, the pods running on it are evicted automatically and moved to a healthy node, in turn further strengthening uptime even when encountering full system failures.
+* **Outsourced Workload:** The trading bot runs in a Python script locally while trade executions, live market data and news headlines are pushed/pulled via external API calls.
+
+## Architectural Decisions
+* Since the trading bot relies on the Google Gemini API for part of its vital decisions and logic, I initially evaluated running a local quantized LLM (Gemma 2B) directly on the nodes in order to lessen dependency on external APIs. After evaluation of the hardware available to me, however, it was revealed that running a local LLM model would yield unacceptable latency of >20s. This is not exactly optimal for time-bound trading decisions, therefore I decided that API calls were still the best course of action.
+* Tailscale and SSH are the main ways to access the cluster, as opposed to local video-based access. The benefits of this decision are twofold:
+  * Due to the headless design of the cluster, physically connecting to the node for access defeats the whole purpose, and would not be viable in a large-scale enterprise environment.
+  * Remote access is now possible from anywhere with an internet connection. Previously, one could only connect from the same network. With Tailscale, SSH is now available from anywhere, allowing for remote troubleshooting and modification.
+ 
