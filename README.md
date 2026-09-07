@@ -73,6 +73,31 @@ Worker     |  HP t630         | AMD GX-420GI  | 4GB DDR4| 16GB eMMC
 Node 2     |                  |               |         |
 
 ```
+## Cost Breakdown
+Most parts were purchased second-hand from individuals who had previously used them in enterprise environments. The cost breakdown, in Singapore Dollars, is below.
+
+
+```
+ Component                                                                     | Cost   | Source
+---------------------------------------------------------------------------------------------------------
+Dell Wyse 5070 + Dell Wyse 3040                                                |  S$120  |  Carousell
+---------------------------------------------------------------------------------------------------------
+HP t630 + 4GB RAM upgrade + 128GB SSD upgrade                                  |  S$55   |  Carousell
+---------------------------------------------------------------------------------------------------------
+Cisco 8-port Gigabit switch                                                    |  S$10   |  Carousell
+---------------------------------------------------------------------------------------------------------
+CMOS battery replacement                                                       |  S$7    |  Local Store
+---------------------------------------------------------------------------------------------------------
+4x CAT6 Ethernet Cable                                                         |  S$4.48 |  Online Store
+---------------------------------------------------------------------------------------------------------
+Miscellaneous costs (6-plug 2-meter power strip, DisplayPort to HDMI adapter)  |  S$10.17|  Online Store
+---------------------------------------------------------------------------------------------------------
+
+Total                                                                             S$206.65
+```
+
+Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load balancing) can cost upwards of $120 per month, plus miscellaneous fees, on cloud providers like AWS. This cluster offers superior control while essentially paying for itself in under two months.
+
 ## Capabilities and Features
 * **Fully remote/automatic OS installation and provisioning:** The worker nodes' operating systems are set up completely automatically via PXE boot and the injected network configuration settings. Once set up, they automatically request (and are assigned) an IP, connecting them to the rest of the network and, most importantly, the master node.
 * **Trading bot run via K3s:** Containerizing the trading bot application allows for better management of computing power and gives access to advanced failover features. When a pod crashes, Kubernetes instantly detects and restarts it in order to maintain maximum uptime. When an update to the trading bot is pushed to the node, Kubernetes executes a rolling update in order to minimize downtime and verify the health of new scripts before deployment.
