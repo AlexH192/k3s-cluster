@@ -18,9 +18,9 @@ Copy the authentication URL, open it in a browser and log in to authorize the no
 ## Tailscale Configuration
 Configure kubectl (installed in `05-k3s-cluster-setup.md`) to eliminate need for SSH and let Tailscale handle authentication:
 ```
-scp geriatricgoose@k3s-master:/home/geriatricgoose/.kube/config ~/.kube/config
+scp admin@k3s-master:/home/admin/.kube/config ~/.kube/config
 ```
-^^ where geriatricgoose is the username and k3s-master is the master node's name (hostname).
+^^ where admin is the username and k3s-master is the master node's name (hostname).
 <br><br>Modify the `/etc/systemd/system/k3s.service` file to include the node's Tailscale IP:
 ```
 sudo nano /etc/systemd/system/k3s.service
