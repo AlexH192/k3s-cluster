@@ -67,6 +67,8 @@ curl -I http://192.168.1.16:8888/ubuntu.iso
 ls /var/lib/tftpboot/
 ```
 The outputs should look like they do in the image below.
-<br><img width="524" height="183" alt="nginx test commands" src="https://github.com/user-attachments/assets/17dc56a0-1a73-41ac-a754-57086394b07b" />
+<br><img width="524" height="183" alt="image" src="https://github.com/user-attachments/assets/13e257d8-1e13-4122-aae3-bd6402fa9b29" />
+
+
 
 With nginx running correctly, boot secondary nodes that have PXE boot enabled. They will send a PXE request to this PXE server, which will then provide the autoinstall Ubuntu files. Nodes will install Ubuntu locally and headlessly.
