@@ -48,8 +48,8 @@ sudo mkdir -p /var/www/html/nocloud
 
 Copy `user-data` and `meta-data` files to nginx `/var/www/html/nocloud`.
 ```
-sudo cp /usr/share/doc/cloud-init/examples/seed/user-data /var/www/html/nocloud/user-data
-sudo cp /usr/share/doc/cloud-init/examples/seed/meta-data /var/www/html/nocloud/meta-data
+sudo cp ~/k3s-cluster/autoinstall/user-data /var/www/html/nocloud/user-data
+sudo cp ~/k3s-cluster/autoinstall/meta-data /var/www/html/nocloud/meta-data
 ```
 
 Serve ISO:
