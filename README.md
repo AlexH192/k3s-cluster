@@ -50,7 +50,7 @@ This repository separates OS-level setup and hardware configuration documents fr
   * `hardware-upgrades.md`: List of hardware upgrades made to each machine in the cluster.
   * `troubleshooting.md`: Documentation on every issue encountered and how these issues were solved.
  
-* `/photos` contains pictures of the design and setup processes.
+* `/photos` contains pictures of the hardware and setup processes.
  
 * `/setup` contains documentation on how each part of the system was set up, step-by-step.
 
