@@ -111,8 +111,10 @@ Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load 
   * Remote access is now possible from anywhere with an internet connection. Previously, one could only connect from the same network. With Tailscale, SSH is now available from anywhere, allowing for remote troubleshooting and modification.
  
 ## Troubleshooting and Lessons Learned
-The most significant issues solved in this project are related to headless networking (as documented in `docs/troubleshooting.md`):
+Five significant issues were encountered, solved and documented in total, the most significant of which were related to headless networking (as documented in `docs/troubleshooting.md`):
 * Headless network connection failed due to misconfigured netplan file
 * Network interface perpetual low-power state due to misconfigured boot parameters
 
-<br>During the long process of diagnosing and solving the networking issues, it was made clear that even one small mistake in the network configuration settings can cause a complete outage. Default configurations, both in UEFI and Linux, are likely to cause issues so special care must be taken in the initial configuration process.
+
+<br>During the long process of diagnosing and solving the  issues, it was made clear that even one small mistake in the network configuration settings can cause a complete outage. Default configurations, both in UEFI and Linux, are likely to cause issues so special care must be taken in the initial configuration process.
+<br>Another major hurdle was the correct identification of issues in the first place-- with the completely headless design, these issues often resulted in disconnects, making it difficult to diagnose. Some issues could only be resolved with access to a video output source. This may not be possible in many environments, therefore I learned that changes must be made carefully and incompatibilities resolved fully before applying anything.
