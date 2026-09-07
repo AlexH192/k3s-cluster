@@ -59,6 +59,7 @@ This repository separates OS-level setup and hardware configuration documents fr
   * `/monitoring`: Contains YAML files for Headlamp, Prometheus, etc.
  
 ## Node Hardware Specifications
+Each node is a different model of thin client with different specifications, meaning considerations regarding performance and workload had to be be made so as not to overload any of the systems.
 ```
 Node Role  |  Hardware Model  |  CPU          |  RAM    |  Storage
 --------------------------------------------------------------------
@@ -73,7 +74,7 @@ Node 2     |                  |               |         |
 
 ```
 ## Capabilities and Features
-* **No-touch OS installation and provisioning:** The worker nodes' operating systems are set up completely automatically via PXE boot and the injected network configuration settings. Once set up, they automatically request (and are assigned) an IP, connecting them to the rest of the network and, most importantly, the master node.
+* **Fully remote/automatic OS installation and provisioning:** The worker nodes' operating systems are set up completely automatically via PXE boot and the injected network configuration settings. Once set up, they automatically request (and are assigned) an IP, connecting them to the rest of the network and, most importantly, the master node.
 * **Trading bot run via K3s:** Containerizing the trading bot application allows for better management of computing power and gives access to advanced failover features. When a pod crashes, Kubernetes instantly detects and restarts it in order to maintain maximum uptime. When an update to the trading bot is pushed to the node, Kubernetes executes a rolling update in order to minimize downtime and verify the health of new scripts before deployment.
 * **Node Failover:** If one of the nodes suffers a power failure or crashes in some way, the pods running on it are evicted automatically and moved to a healthy node, in turn further strengthening uptime even when encountering full system failures.
 * **Outsourced Workload:** The trading bot runs in a Python script locally while trade executions, live market data and news headlines are pushed/pulled via external API calls.
