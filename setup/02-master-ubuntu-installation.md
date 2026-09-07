@@ -11,4 +11,4 @@ The Ubuntu ISO is flashed onto the USB flash drive:
 *   Boot Device Selection: After booting, repeatedly press the F2 key until UEFI appears. Navigate to the boot priority settings, and set the USB flash drive as the first priority (even above the SSD)
 *   Storage Allocation: Accept the default LVM settings. Storage allocation is fixed in `05-k3s-cluster-setup.md`.
 *   Network Setup: Leave on DHCP for now, Netplan is configured in `04-network-configuration.md`.
-*   User Setup: Created the primary administrator account (`geriatricgoose`), which will be used for all Tailscale and Kubernetes authentication.
+*   User Setup: Created the primary administrator account (`admin`), which will be used for all Tailscale and Kubernetes authentication.
