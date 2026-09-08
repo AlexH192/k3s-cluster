@@ -1,5 +1,4 @@
 # Bare-metal Kubernetes K3s Cluster & Trading Bot Infrastructure
-## TODO: IMPLEMENT NODE FAILOVER W/ HEARTBEAT, TESTING NODE DEATHS WITH CHAOSMONKEY***
 This project is a three-node, bare-metal Kubernetes cluster built on repurposed enterprise thin clients, featuring automated PXE OS installation & configuration, Wake-on-LAN power management and high-availability architecture to ensure maximum uptime.
 
 The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and placing trades via API connections.
