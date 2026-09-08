@@ -33,7 +33,8 @@ When hosting the trading bot, the server also contacts external APIs to pull inf
  │ Prometheus     | |                | |                |
  └────────────────┘ └────────────────┘ └────────────────┘
 ```
-<br>The fully connected and powered cluster is shown below:
+**A more detailed architecture diagram can be found in `docs/architecture.md`!**
+<br><br>The fully connected and powered cluster is shown below:
 <br><br><img width="350" height="630" alt="IMG_6842 (1)" src="https://github.com/user-attachments/assets/b9831bb4-49cd-4fa5-a63f-64dee60c89a5" />
 <img width="350" height="630" alt="IMG_6845" src="https://github.com/user-attachments/assets/c96282d4-322d-4f43-bf1d-46033729d786" />
 
