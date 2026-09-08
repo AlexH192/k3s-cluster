@@ -18,7 +18,7 @@ spec:
         image: alex2938e2/trading-bot:latest 
         imagePullPolicy: Always
         
-        command: ["python", “bot_intraday_etfs.py"]
+        command: ["python", "bot_intraday_etfs.py"]
         
         envFrom:
         - secretRef:
@@ -59,7 +59,7 @@ spec:
         image: alex2938e2/trading-bot:latest 
         imagePullPolicy: Always
         
-        command: ["python", “bot_swing_commodities.py"]
+        command: ["python", "bot_swing_commodities.py"]
         
         envFrom:
         - secretRef:
