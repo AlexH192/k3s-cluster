@@ -12,9 +12,10 @@ Since this cluster pairs low-power thin clients with higher performance ones, wo
 ```mermaid
 graph TD
     %% External APIs
-    subgraph External Cloud
-        A[Alpaca WebSocket<br/>Real-Time Pricing]
-        B[Currents API<br/>Sentiment Analysis]
+    subgraph External APIs
+        A[Alpaca WebSocket]
+        B[Currents API]
+        C[Gemini API]
     end
 
     %% Network Layer
@@ -41,17 +42,18 @@ graph TD
         end
 
         subgraph 16GB eMMC / 4GB RAM
-            W2 -.- W2_1[Trading Engine Pod]
+            W2 -.- W2_1[Trading Bot Pod]
         end
     end
 
     %% Data Flow
     W2_1 -->|Subscribes| A
     W2_1 -->|Polls| B
-    W2_1 -->|Writes Raw Data| M3
-    W2_1 -->|Reads Data| M3
     W2_1 -->|Executes Trades| A
+    W2_1 -->|Sends Prompt, Receives Response| C
 ```
+
+
 
 ## Network Port Allocation
 abc
