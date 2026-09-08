@@ -1,35 +1,74 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: trading-bot
+  name: equities-bot
   namespace: trading
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: trading-bot
+      app: equities-bot
   template:
     metadata:
       labels:
-        app: trading-bot
+        app: equities-bot
     spec:
       containers:
-      - name: bot-container
+      - name: equities-container
         image: alex2938e2/trading-bot:latest 
         imagePullPolicy: Always
         
-        # Injects the Alpaca and Currents API keys
+        command: ["python", “bot_intraday_etfs.py"]
+        
         envFrom:
         - secretRef:
             name: bot-secrets
-            
-        # Internal DNS routing for the Redis cache
         env:
         - name: REDIS_HOST
           value: "redis.trading.svc.cluster.local"
         - name: REDIS_PORT
           value: "6379"
-          
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            preference:
+              matchExpressions:
+              - key: hardware
+                operator: In
+                values:
+                - hp-t630
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commodities-bot
+  namespace: trading
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commodities-bot
+  template:
+    metadata:
+      labels:
+        app: commodities-bot
+    spec:
+      containers:
+      - name: commodities-container
+        image: alex2938e2/trading-bot:latest 
+        imagePullPolicy: Always
+        
+        command: ["python", “bot_swing_commodities.py"]
+        
+        envFrom:
+        - secretRef:
+            name: bot-secrets
+        env:
+        - name: REDIS_HOST
+          value: "redis.trading.svc.cluster.local"
+        - name: REDIS_PORT
+          value: "6379"
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
