@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: trading-bot
+  namespace: trading
 spec:
   replicas: 1
   selector:
@@ -14,7 +15,21 @@ spec:
     spec:
       containers:
       - name: bot-container
-        image: your-trading-bot-image:latest
+        image: alex2938e2/trading-bot:latest 
+        imagePullPolicy: Always
+        
+        # Injects the Alpaca and Currents API keys
+        envFrom:
+        - secretRef:
+            name: bot-secrets
+            
+        # Internal DNS routing for the Redis cache
+        env:
+        - name: REDIS_HOST
+          value: "redis.trading.svc.cluster.local"
+        - name: REDIS_PORT
+          value: "6379"
+          
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
