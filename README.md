@@ -30,8 +30,8 @@ When hosting the trading bot, the server also contacts external APIs to pull inf
  ├────────────────┤ ├────────────────┤ ├────────────────┤
  │ K3s Server     │ │ K3s Agent      │ │ K3s Agent      │
  │ Nginx & dnsmasq│ │ Traefik Router │ │ Trading Bot    │
- │ PXE Server Host│ │ Headlamp UI    │ │ xxxxxxxxxxx.   |
- │                | |                | | Prometheus     |
+ │ PXE Server Host│ │ Headlamp UI    │ │ (by default).  |
+ │ Prometheus     | |                | |                |
  └────────────────┘ └────────────────┘ └────────────────┘
 ```
 <br>The fully connected and powered cluster is shown below:
