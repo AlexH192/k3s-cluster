@@ -3,7 +3,10 @@ kind: Ingress
 metadata:
   name: headlamp-ingress
   namespace: kube-system
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
+  ingressClassName: traefik
   rules:
   - http:
       paths:
