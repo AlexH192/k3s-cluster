@@ -17,7 +17,7 @@ When hosting the trading bot, the server also contacts external APIs to pull inf
                                   └────────────▲────────────┘
                                                │
 ┌──────────────┐     ┌──────────────┐          │
-│ Local Router ├─────► Gigabit Switch ├────────┘
+│ Local Router ├─────►Gigabit Switch├────────┘
 └──────────────┘     └──────┬───────┘
                             │
           ┌─────────────────┼─────────────────┐
