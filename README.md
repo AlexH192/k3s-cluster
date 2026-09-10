@@ -31,6 +31,7 @@ When hosting the trading bot, the server also contacts external APIs to pull inf
  │ Nginx & dnsmasq│ │ Traefik Router │ │ Trading Bot    │
  │ PXE Server Host│ │ Headlamp UI    │ │ (by default).  |
  │ Prometheus     | |                | |                |
+ | Redis Cache    | |                | |                |
  └────────────────┘ └────────────────┘ └────────────────┘
 ```
 **A more detailed architecture diagram can be found in `/docs/architecture.md`!**
