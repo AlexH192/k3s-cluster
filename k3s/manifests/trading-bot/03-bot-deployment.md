@@ -10,3 +10,5 @@ The file is provided as `/k3s/manifests/trading-bot/bot-deployment.yaml`.
 ```
 kubectl apply -f bot-deployment.yaml
 ```
+The trading bot contains two sub-bots: one for trading equities, and another for trading commodities on a longer timeframe. To avoid causing a full crash if one of the bots crashes, they are separated into two separate docker containers, meaning two instances will run on the worker node, one with each bot.
+<br><br>Docker and container management will be covered in `/k3s/manifests/trading-bot/05-docker-deployment.md`.
