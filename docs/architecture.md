@@ -52,6 +52,11 @@ graph TD
     W2_1 -->|Executes Trades| A
     W2_1 -->|Sends Prompt, Receives Response| C
 ```
+<details>
+<summary><i>Diagram not loading? Click here for the static image</i></summary>
+
+<img width="1250" height="575" alt="image" src="https://github.com/user-attachments/assets/3aa60ab3-e310-4c03-b531-ddc9126bdfaf" />
+</details>
 
 
 
