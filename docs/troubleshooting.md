@@ -43,7 +43,12 @@ EOF'
 * Solution: Enabled PXE boot in both worker nodes' BIOS settings.
 
 
-**27/8/2026 | Issue 5: Port 80 being intercepted, nginx blocked**
+**27/8/2026 | Issue 5: Port 80 Being Intercepted, nginx Blocked**
 * Symptom: nginx was unable to run on port 80, and returned an error message.
 * Cause: Another process, Traefik, was intercepting traffic to 192.168.1.16:80 as its own.
 * Solution: Moved nginx to port 192.168.1.16:8888, a port with no other processes listening.
+
+**9/9/2026 | Issue 6: Trading Bots Failed Connection to Internal Redis Instance**
+* Symptom: The trading bots were unable to connect to the Redis instance, leading to errors.
+* Cause: Host & DNS mismatch -- trading bot code lacked clear routing for Redis inside the k3s instance; Redis process could not be identified.
+* Solution: Configuration added to trading bot code, explicitly pointing to the k3s internal DNS `redis.trading.svc.cluster.local`
