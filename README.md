@@ -112,7 +112,7 @@ Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load 
   * Remote access is now possible from anywhere with an internet connection. Previously, one could only connect from the same network. With Tailscale, SSH is now available from anywhere, allowing for remote troubleshooting and modification.
  
 ## Troubleshooting and Lessons Learned
-Five significant issues were encountered, solved and documented in total, the most significant of which were related to headless networking (as documented in `/docs/troubleshooting.md`):
+Six significant issues were encountered, solved and documented in total, the most significant of which were related to headless networking (as documented in `/docs/troubleshooting.md`):
 * Headless network connection failed due to misconfigured netplan file
 * Network interface perpetual low-power state due to misconfigured boot parameters
 
