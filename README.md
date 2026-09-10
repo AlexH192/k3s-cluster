@@ -5,7 +5,7 @@ The cluster serves as the infrastructure for a custom algorithmic stock trading 
 <a href="https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents.git" target="_blank" rel="noopener noreferrer">Trading Bot Repository</a>
 
 ## Architecture and Topology
-The physical cluster consists of three repurposed thin-client computers connected via an unmanaged 8-port gigabit switch. The most powerful computer, a Dell Wyse 5070, is used as the main access point and control plane (master node). It also serves as the PXE boot server that provisions the two other worker nodes over the network.
+The physical cluster consists of three repurposed thin-client computers connected via an unmanaged 8-port gigabit switch. The most powerful computer, a Dell Wyse 5070, is used as the main access point and control plane (master node). It also serves as the PXE boot server that provisions the two other worker nodes over the network upon first setup.
 When hosting the trading bot, the server also contacts external APIs to pull information, execute trades and send notifications.
 
 <br>The general architecture diagram is depicted below.
