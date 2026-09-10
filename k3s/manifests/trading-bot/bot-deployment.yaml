@@ -15,19 +15,12 @@ spec:
     spec:
       containers:
       - name: equities-container
-        image: alex2938e2/trading-bot:latest 
+        image: alex2938e2/trading-bot:latest
         imagePullPolicy: Always
-        
         command: ["python", "bot_intraday_etfs.py"]
-        
         envFrom:
         - secretRef:
             name: bot-secrets
-        env:
-        - name: REDIS_HOST
-          value: "redis.trading.svc.cluster.local"
-        - name: REDIS_PORT
-          value: "6379"
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -56,19 +49,12 @@ spec:
     spec:
       containers:
       - name: commodities-container
-        image: alex2938e2/trading-bot:latest 
+        image: alex2938e2/trading-bot:latest
         imagePullPolicy: Always
-        
         command: ["python", "bot_swing_commodities.py"]
-        
         envFrom:
         - secretRef:
             name: bot-secrets
-        env:
-        - name: REDIS_HOST
-          value: "redis.trading.svc.cluster.local"
-        - name: REDIS_PORT
-          value: "6379"
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
