@@ -1,4 +1,4 @@
-# K3s Cluster Setup
+# K3s Master Node Setup
 To turn the bare Ubuntu installation into the K3s master node, some installations steps must be taken.
 
 ## General setup after SSH
