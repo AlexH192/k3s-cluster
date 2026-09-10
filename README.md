@@ -33,7 +33,7 @@ When hosting the trading bot, the server also contacts external APIs to pull inf
  │ Prometheus     | |                | |                |
  └────────────────┘ └────────────────┘ └────────────────┘
 ```
-**A more detailed architecture diagram can be found in `docs/architecture.md`!**
+**A more detailed architecture diagram can be found in `/docs/architecture.md`!**
 <br><br>The fully connected and powered cluster is shown below:
 <br><br><img width="350" height="630" alt="IMG_6842 (1)" src="https://github.com/user-attachments/assets/b9831bb4-49cd-4fa5-a63f-64dee60c89a5" />
 <img width="350" height="630" alt="IMG_6845" src="https://github.com/user-attachments/assets/c96282d4-322d-4f43-bf1d-46033729d786" />
@@ -55,8 +55,9 @@ This repository separates OS-level setup and hardware configuration documents fr
 * `/setup` contains documentation on how each part of the system was set up, step-by-step.
 
 * `/k3s/manifests` contains cluster data post-installation.
-  * `/networking`: Contains netplan configurations and ingress rules
-  * `/monitoring`: Contains YAML files for Headlamp, Prometheus, etc.
+  * `/network-configs`: Contains netplan configurations and ingress rules
+  * `/trading-bot`: Contains YAML files for bot deployment, along with documentation on the setup of Kubernetes, Docker and configuration of the trading bot.
+  * `/monitoring`: Contains the YAML file for the deployment of Prometheus, along with documentation.
  
 ## Node Hardware Specifications
 Each node is a different model of thin client with different specifications, meaning considerations regarding performance and workload had to be be made so as not to overload any of the systems.
@@ -111,7 +112,7 @@ Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load 
   * Remote access is now possible from anywhere with an internet connection. Previously, one could only connect from the same network. With Tailscale, SSH is now available from anywhere, allowing for remote troubleshooting and modification.
  
 ## Troubleshooting and Lessons Learned
-Five significant issues were encountered, solved and documented in total, the most significant of which were related to headless networking (as documented in `docs/troubleshooting.md`):
+Five significant issues were encountered, solved and documented in total, the most significant of which were related to headless networking (as documented in `/docs/troubleshooting.md`):
 * Headless network connection failed due to misconfigured netplan file
 * Network interface perpetual low-power state due to misconfigured boot parameters
 
