@@ -31,5 +31,5 @@ Each of the three nodes should be assigned a static IP address in order to ensur
 * Reboot all nodes.
 
 On the node:
-* Configure static IP by changing netplan file as in `/k3s/manifests/networking-configs`.
+* Configure static IP by changing netplan file as in `/k3s/manifests/networking-configs`. These files are also provided in `/k3s/manifests/networking-configs`.
 * Run `sudo netplan apply` to apply changes.
