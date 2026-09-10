@@ -33,6 +33,7 @@ graph TD
         subgraph 128GB SSD / 8GB RAM
             M -.- M1[K3s Control Plane]
             M -.- M2[PXE, dnsmasq, Nginx]
+            M -.- M5[Redis Cache]
             M -.- M4[(Prometheus Data)]
         end
 
@@ -55,7 +56,7 @@ graph TD
 <details>
 <summary><i>Diagram not loading? Click here for the static image</i></summary>
 
-<img width="1250" height="575" alt="image" src="https://github.com/user-attachments/assets/3aa60ab3-e310-4c03-b531-ddc9126bdfaf" />
+<img width="979" height="408" alt="image" src="https://github.com/user-attachments/assets/f16c6d22-ed8b-4724-9315-4d2c267759d7" />
 </details>
 
 
