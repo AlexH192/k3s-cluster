@@ -1,7 +1,7 @@
 # Bare-metal Kubernetes K3s Cluster & Trading Bot Infrastructure
 This project is a three-node, bare-metal Kubernetes cluster built on repurposed enterprise thin clients, featuring automated PXE OS installation & configuration, Wake-on-LAN power management and high-availability architecture to ensure maximum uptime.
 
-The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and placing trades via API connections.
+The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and commodities, placing trades via an API connection.
 <a href="https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents.git" target="_blank" rel="noopener noreferrer">Trading Bot Repository</a>
 
 ## Architecture and Topology
