@@ -117,5 +117,5 @@ Five significant issues were encountered, solved and documented in total, the mo
 * Network interface perpetual low-power state due to misconfigured boot parameters
 
 
-<br>During the long process of diagnosing and solving the  issues, it was made clear that even one small mistake in the network configuration settings can cause a complete outage. Default configurations, both in UEFI and Linux, are likely to cause issues so special care must be taken in the initial configuration process.
+<br>During the long process of diagnosing and solving the issues, it was made clear that even one small mistake in the network configuration settings, YAML deployment files or trading bot code can cause a complete outage. Default configurations, both in UEFI and Linux, are likely to cause issues so special care must be taken in the initial configuration process.
 <br><br>Another major hurdle was the correct identification of issues in the first place-- with the completely headless design, these issues often resulted in disconnects, making it difficult to diagnose. Some issues could only be resolved with access to a video output source. This may not be possible in many environments, therefore I learned that changes must be made carefully and incompatibilities resolved fully before applying anything.
