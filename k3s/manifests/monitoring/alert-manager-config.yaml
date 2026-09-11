@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: alertmanager-config
+  namespace: monitoring
+stringData:
+  alertmanager.yaml: |
+    global:
+      resolve_timeout: 5m
+
+    route:
+      group_by: ['alertname', 'namespace']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: telegram
+
+    receivers:
+    - name: telegram
+      telegram_configs:
+      - bot_token: <TELEGRAM BOT TOKEN>
+        chat_id: <TELEGRAM CHAT ID>
+        message: |
+          *{{ .GroupLabels.alertname }}*
+          {{ range .Alerts }}
+          *Status:* {{ .Status }}
+          *Namespace:* {{ .Labels.namespace }}
+          *Pod:* {{ .Labels.pod }}
+          *Message:* {{ .Annotations.message }}
+          {{ end }}
+        parse_mode: Markdown
