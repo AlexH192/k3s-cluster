@@ -1,5 +1,5 @@
 # Scripts Setup
-The scripts located in this folder serve to streamline the sleep, start and health check processes; they eliminate the need to run every command separately.
+The scripts located in this folder serve to streamline the sleep, start and health check processes; they eliminate the need to run every command separately. They are also used by the time-based cron jobs to wake up and shut down the cluster based on market hours.
 <br><br>A new directory was created for scripts:
 ```
 mkdir -p ~/k3s-cluster/k3s/scripts
