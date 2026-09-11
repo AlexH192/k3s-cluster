@@ -18,8 +18,8 @@ stringData:
     receivers:
     - name: telegram
       telegram_configs:
-      - bot_token: <TELEGRAM BOT TOKEN>
-        chat_id: <TELEGRAM CHAT ID>
+      - bot_token: <TELEGRAM_BOT_TOKEN>
+        chat_id: <TELEGRAM_CHAT_ID>
         message: |
           *{{ .GroupLabels.alertname }}*
           {{ range .Alerts }}
