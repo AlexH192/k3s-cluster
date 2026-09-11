@@ -21,5 +21,5 @@ kill $PF_PID
 
 # Scale down processes and suspend system
 kubectl scale deployment equities-bot commodities-bot redis-cache -n trading --replicas=0
-k3d cluster stop wyse-5070
+sudo systemctl stop k3s
 sudo systemctl suspend
