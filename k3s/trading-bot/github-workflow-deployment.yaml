@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'trading-bot/**'
+    paths-ignore:
+      - 'README.md'
+      - '.env_example'
+      - '.gitignore'
 
 jobs:
   build-and-push:
@@ -23,43 +25,37 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./trading-bot
+          context: .
           push: true
           tags: |
             alex2938e2/trading-bot:latest
             alex2938e2/trading-bot:${{ github.sha }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    steps:
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build-and-push
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Connect to Tailscale
-        uses: tailscale/github-action@v2
-        with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
-
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
 
-      - name: Try to deploy, queue if cluster asleep
+      - name: Deploy or queue update
         run: |
-          # Copy kubeconfig from master node
           mkdir -p ~/.kube
           ssh -o StrictHostKeyChecking=no admin@k3s-master \
             "cat ~/.kube/config" > ~/.kube/config
-          
-          # Replace localhost with Tailscale hostname
           sed -i 's/127.0.0.1/k3s-master/g' ~/.kube/config
 
-          # Check if cluster is reachable
           if kubectl get nodes --request-timeout=10s > /dev/null 2>&1; then
             echo "Cluster is online, deploying now..."
             kubectl rollout restart deployment equities-bot -n trading
