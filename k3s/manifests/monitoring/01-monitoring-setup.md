@@ -25,21 +25,7 @@ kubectl get pods -n monitoring -o wide
 ```
 `prometheus-node-exporter` should be running on each node, as shown below:
 <br><img width="1028" height="119" alt="image" src="https://github.com/user-attachments/assets/55cee9ce-9aba-4734-8b54-33adf3ec4177" />
-<br><br>To make Prometheus and Headlamp visible persistently (as opposed to having to port forward every time to monitor), some modifications must be made. First, patch the Prometheus service to expose it on all physical node IPs:
-```
-kubectl patch svc prometheus-server -n monitoring -p '{"spec": {"type": "NodePort"}}'
-```
-Do the same for Headlamp:
-```
-kubectl patch svc my-headlamp -n kube-system -p '{"spec": {"type": "NodePort"}}'
-```
-Find new network ports:
-```
-kubectl get svc -A | grep -E "prometheus-server|headlamp"
-```
-The output should look like the image below:
-<br><img width="927" height="75" alt="image" src="https://github.com/user-attachments/assets/c2d328a8-39f5-47c9-b653-398216c3f618" />
-<br>Create a permanent Headlamp admin token (with this deployment, token resets every 24 hours):
+<br><br><br>Create a permanent Headlamp admin token (with this deployment, token resets every 24 hours):
 ```
 kubectl apply -f - <<EOF
 apiVersion: v1
@@ -75,8 +61,9 @@ Retrieve the token:
 ```
 kubectl get secret headlamp-admin-token -n kube-system -o jsonpath="{.data.token}" | base64 --decode
 ```
-NodePort services must be created in order to be able to access the monitoring sites from anywhere.
-<br><br>For Headlamp:
+<br><br>To make Prometheus and Headlamp visible persistently (as opposed to having to port forward every time to monitor), some modifications must be made.
+<br><br>NodePort services must be created in order to be able to access the monitoring sites from anywhere.
+<br>For Headlamp:
 ```
 kubectl apply -f - <<EOF
 apiVersion: v1
@@ -112,5 +99,11 @@ spec:
     nodePort: 30081
 EOF
 ```
-Both Headlamp and Grafana can now be accessed via ports 30080 and 30081, respectively. To access them on a browser, use the address `http://<TAILSCALE_IP>:<PORT>`.
+Find new network ports:
+```
+kubectl get svc -A | grep NodePort
+```
+The output should look like the image below:
+<br><img width="1184" height="49" alt="image" src="https://github.com/user-attachments/assets/3e9054d1-bfa6-43f5-acad-636a14abc4a6" />
+<br><br>Both Headlamp and Grafana can now be accessed via ports 30080 and 30081, respectively. To access them on a browser, use the address `http://<TAILSCALE_IP>:<PORT>`.
 <br><br>In my case, Headlamp is accessed with `http://100.72.243.26:30080` and Grafana is accessed with `http://100.72.243.26:30081`.
