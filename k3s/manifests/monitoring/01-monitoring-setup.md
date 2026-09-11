@@ -232,4 +232,4 @@ Test Alertmanager by scaling down one of the trading bot processes:
 kubectl scale deployment equities-bot -n trading --replicas=0
 ```
 A Telegram message should be sent and look like this:
-<img width="463" height="152" alt="image" src="https://github.com/user-attachments/assets/17706598-1fdf-4d79-aaa0-ee6b45556385" />
+<br><img width="463" height="152" alt="image" src="https://github.com/user-attachments/assets/17706598-1fdf-4d79-aaa0-ee6b45556385" />
