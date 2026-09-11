@@ -113,6 +113,10 @@ The output should look like the image below:
 To make sure Grafana is receiving data from the right sources, navigate to `Connections > Data Sources`. Prometheus should appear, as in the image below:
 <img width="1438" height="530" alt="image" src="https://github.com/user-attachments/assets/6c8e4e08-5f5a-4344-969f-7b2da83f6518" />
 <br><br>Import some dashboards by navigating to `Dashboards > New > Import Dashboards`
+<br>Depending on which dashboards were imported, the Grafana monitoring interface should look something like this:
+<img width="1434" height="775" alt="image" src="https://github.com/user-attachments/assets/770f77c1-5e2a-46a1-a4bc-d5e1230ca2a0" />
+
+
 
 ## Alertmanager Setup
 To set up Alertmanager, a config must be created with the Telegram credentials (stored as a secret):
