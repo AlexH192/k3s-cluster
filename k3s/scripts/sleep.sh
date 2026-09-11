@@ -22,4 +22,5 @@ kill $PF_PID
 # Scale down processes and suspend system
 kubectl scale deployment equities-bot commodities-bot redis-cache -n trading --replicas=0
 sudo systemctl stop k3s
+sudo rtcwake -m no -t $(date -d "tomorrow 09:25" +%s)
 sudo systemctl suspend
