@@ -1,0 +1,52 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: bot-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+  - name: trading-bot
+    rules:
+    - alert: TradingBotDown
+      expr: kube_deployment_status_replicas_available{namespace="trading"} == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        message: "Trading bot {{ \$labels.deployment }} is down in namespace {{ \$labels.namespace }}"
+
+    - alert: TradingBotRestarting
+      expr: rate(kube_pod_container_status_restarts_total{namespace="trading"}[15m]) > 0
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        message: "Pod {{ \$labels.pod }} is restarting frequently"
+
+  - name: cluster
+    rules:
+    - alert: NodeMemoryHigh
+      expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.85
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        message: "Node memory usage is above 85%"
+
+    - alert: PodCrashLooping
+      expr: rate(kube_pod_container_status_restarts_total[15m]) > 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        message: "Pod {{ \$labels.pod }} in {{ \$labels.namespace }} is crash looping"
+
+    - alert: NodeDown
+      expr: up{job="node-exporter"} == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        message: "Node {{ \$labels.instance }} is down"
