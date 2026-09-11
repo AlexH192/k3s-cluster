@@ -55,10 +55,12 @@ This repository separates OS-level setup and hardware configuration documents fr
  
 * `/setup` contains documentation on how each part of the system was set up, step-by-step.
 
-* `/k3s/manifests` contains cluster data post-installation.
-  * `/network-configs`: Contains netplan configurations and ingress rules
+* `/k3s/` contains cluster data and documentation for k3s and trading bot deployment.
+  * `/monitoring`: Contains YAML files and documentation for setting up monitoring and alerts for the trading bot.
+  * `/network-configs`: Contains netplan configurations and ingress rules for Headlamp and Grafana.
   * `/trading-bot`: Contains YAML files for bot deployment, along with documentation on the setup of Kubernetes, Docker and configuration of the trading bot.
-  * `/monitoring`: Contains the YAML file for the deployment of Prometheus, along with documentation.
+  * `/scripts`: Contains bash scripts for sleep, wakeup and healthcheck, as well as documentation on their setup and use.
+  * `/trading-bot`: Contains YAML and Docker setup/configuration files, as well as comprehensive documentation on the setup process of the trading bot using Docker, Redis Cache, Secrets and more.
  
 ## Node Hardware Specifications
 Each node is a different model of thin client with different specifications, meaning considerations regarding performance and workload had to be be made so as not to overload any of the systems.
