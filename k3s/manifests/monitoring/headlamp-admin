@@ -1,3 +1,4 @@
+kubectl apply -f - <<EOF
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -25,3 +26,4 @@ metadata:
   annotations:
     kubernetes.io/service-account.name: headlamp-admin
 type: kubernetes.io/service-account-token
+EOF
