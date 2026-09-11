@@ -1,6 +1,6 @@
 # Scripts Setup
 The scripts located in this folder serve to streamline the sleep, start and health check processes; they eliminate the need to run every command separately. They are also used by the time-based cron jobs to wake up and shut down the cluster based on market hours.
-<br><br>The `wake.sh` script checks for pending updates to the docker image and applies them upon startup. This is related to the GitHub Actions pipeline created in `/TBD`
+<br><br>The `wake.sh` script checks for pending updates to the docker image and applies them upon startup. This is related to the GitHub Actions pipeline created in `/k3s/trading-bot/08-github-actions-pipeline.md`
 The `sleep.sh` script sets up an RTC wakeup job for the following day (or Monday if the current day is Friday), so that the nodes can wake up from their sleep state before initializing the trading bot.
 <br><br>A new directory should be created for scripts:
 ```
