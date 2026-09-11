@@ -1,7 +1,0 @@
-grafana:
-  adminPassword: <PASSWORD>
-  grafana.ini:
-    server:
-      domain: "100.72.243.26"
-      root_url: "%(protocol)s://%(domain)s:8080/grafana/"
-      serve_from_sub_path: true
