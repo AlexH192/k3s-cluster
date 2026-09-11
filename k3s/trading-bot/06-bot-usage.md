@@ -37,4 +37,14 @@ kubectl logs -f deployment/equities-bot -n trading --tail=100
 kubectl logs -f deployment/commodities-bot -n trading --tail=100
 ```
 <img width="606" height="201" alt="image" src="https://github.com/user-attachments/assets/35ba79f7-a4ad-4470-9c91-0de06d7e5d83" />
-<br><br>For whole-cluster wakeup, sleep and health-check, the scripts from `/k3s/scripts/scripts-setup.md` can be used.
+<br><br>For whole-cluster wakeup, sleep and health-check, the scripts from `/k3s/scripts/scripts-setup.md` can be used, with the following commands:
+```
+#Wakeup
+bash ~/k3s-cluster/k3s/scripts/wake.sh
+
+#Sleep
+bash ~/k3s-cluster/k3s/scripts/sleep.sh
+
+#Health Check
+bash ~/k3s-cluster/k3s/scripts/health-check.sh
+```
