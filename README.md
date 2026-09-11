@@ -1,8 +1,9 @@
-# Bare-metal Kubernetes K3s Cluster & Trading Bot Infrastructure
-This project is a three-node, bare-metal Kubernetes cluster built on repurposed enterprise thin clients, featuring automated PXE OS installation & configuration, Wake-on-LAN power management and high-availability architecture to ensure maximum uptime.
+# Bare-metal Kubernetes K3s Cluster & Trading Bot Infrastructure with CI/CD Pipeline
+This project is a three-node, bare-metal Kubernetes cluster built on repurposed enterprise thin clients, featuring automated PXE OS installation & configuration, time-based power management and high-availability architecture to ensure maximum uptime.
 
 The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and commodities, placing trades via an API connection.
 <a href="https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents.git" target="_blank" rel="noopener noreferrer">Trading Bot Repository</a>
+<br>Changes made to the repo above are automatically pushed to the K3s cluster via GitHub Actions CI/CD pipeline, enabling quick deployment of changes.
 
 ## Architecture and Topology
 The physical cluster consists of three repurposed thin-client computers connected via an unmanaged 8-port gigabit switch. The most powerful computer, a Dell Wyse 5070, is used as the main access point and control plane (master node). It also serves as the PXE boot server that provisions the two other worker nodes over the network upon first setup.
@@ -105,6 +106,7 @@ Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load 
 ## Capabilities and Features
 * **Fully remote/automatic OS installation and provisioning:** The worker nodes' operating systems are set up completely automatically via PXE boot and the injected network configuration settings. Once set up, they automatically request (and are assigned) an IP, connecting them to the rest of the network and, most importantly, the master node.
 * **Trading bot run via K3s with Docker:** Containerizing the trading bot application allows for better management of computing power and gives access to advanced failover features. When a pod crashes, Kubernetes instantly detects and restarts it in order to maintain maximum uptime. When an update to the trading bot is pushed to the node, Kubernetes executes a rolling update in order to minimize downtime during deployment.
+* **GitHub Actions CI/CD Pipeline**: Any change made to the trading bot repo is automatically reflected in the k3s cluster using the GitHub Actions pipeline. This allows for rapid deployment and bug-fixing of the payload.
 * **Node Failover:** If one of the nodes suffers a power failure or crashes in some way, the pods running on it are evicted automatically and moved to a healthy node, in turn further strengthening uptime even when encountering full system failures.
 * **Outsourced Workload:** The trading bot runs in a Python script locally while trade executions, live market data and news headlines are pushed/pulled via external API calls.
 * **Node Failure Alerts**: Alerts are sent via Telegram if any pod or node goes down. This is managed by Alertsmanager, which monitors node and pod health to ensure the cluster and its operations stays intact.
