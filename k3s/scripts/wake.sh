@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wakeonlan a4:bb:6d:23:e0:ae
+sudo systemctl start k3s
 sleep 30
 kubectl wait --for=condition=ready node --all --timeout=60s
 
