@@ -28,6 +28,11 @@ jobs:
           tags: |
             alex2938e2/trading-bot:latest
             alex2938e2/trading-bot:${{ github.sha }}
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
 
   deploy:
     runs-on: ubuntu-latest
