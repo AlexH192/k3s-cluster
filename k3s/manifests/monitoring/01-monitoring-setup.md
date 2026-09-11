@@ -233,3 +233,5 @@ kubectl scale deployment equities-bot -n trading --replicas=0
 ```
 A Telegram message should be sent and look like this:
 <br><img width="463" height="152" alt="image" src="https://github.com/user-attachments/assets/17706598-1fdf-4d79-aaa0-ee6b45556385" />
+<br><br>When an issue is resolved, another message with `Status: resolved` is sent:
+<br><img width="459" height="153" alt="image" src="https://github.com/user-attachments/assets/9b74776a-ec84-4f4e-87b3-1b4e59437006" />
