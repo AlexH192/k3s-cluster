@@ -22,7 +22,7 @@ To manually update the Docker image after a change is made in the trading bot co
 docker build --platform linux/amd64 -t alex2938e2/trading-bot:latest .
 docker push alex2938e2/trading-bot:latest
 ```
-This action is also automated via GitHub Actions as per `/TBD`
+This action is also automated via GitHub Actions as per `/k3s/trading-bot/08-github-actions-pipeline.md`
 <br><br>The trading bot pods and Redis Cache are now running on their preferred nodes (The HP t630 and Wyse 5070, respectively), as shown in the image below. Live pods, nodes and IPs can be inspected using `kubectl get pods -n trading -o wide`:
 <img width="917" height="76" alt="Pasted Graphic" src="https://github.com/user-attachments/assets/1f192439-838b-4f87-9b41-b2e441bd5196" />
 <br><br>Live bot logs for the equities and commodities bots can be monitored using the two commands below:
