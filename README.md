@@ -1,7 +1,8 @@
 # Bare-metal Kubernetes K3s Cluster & Trading Bot Infrastructure with CI/CD Pipeline
-This project is a three-node, bare-metal Kubernetes cluster built on repurposed enterprise thin clients, featuring automated PXE OS installation & configuration, time-based power management and high-availability architecture to ensure maximum uptime.
+![Build Status](https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents/actions/workflows/deploy.yml/badge.svg)
+<br><br>This project is a three-node, bare-metal Kubernetes cluster built on repurposed enterprise thin clients, featuring automated PXE OS installation & configuration, time-based power management and high-availability architecture to ensure maximum uptime.
 
-The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and commodities, placing trades via an API connection.
+The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and commodities, placing trades via an API connection. The trading bot itself uses a self-developed Opening Range Breakout (ORB) and liquidity sweep strategy, paired with strict parameter-based Gemini API decision-making to execute trades during US market sessions.
 <a href="https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents.git" target="_blank" rel="noopener noreferrer">Trading Bot Repository</a>
 <br>Changes made to the repo above are automatically pushed to the K3s cluster via GitHub Actions CI/CD pipeline, enabling quick deployment of changes and rapid bug fixes.
 
@@ -30,8 +31,8 @@ When hosting the trading bot, the server also contacts external APIs to pull inf
  ├────────────────┤ ├────────────────┤ ├────────────────┤
  │ K3s Server     │ │ K3s Agent      │ │ K3s Agent      │
  │ Nginx & dnsmasq│ │ Traefik Router │ │ Trading Bot    │
- │ PXE Server Host│ │ Headlamp UI    │ │ (by default).  |
- │ Prometheus     | |                | |                |
+ │ PXE Server Host│ │ Headlamp,      │ │ (by default).  |
+ │ Prometheus     | | Grafana        | |                |
  | Redis Cache    | |                | |                |
  └────────────────┘ └────────────────┘ └────────────────┘
 ```
@@ -59,7 +60,6 @@ This repository separates OS-level setup and hardware configuration documents fr
 * `/k3s/` contains cluster data and documentation for k3s and trading bot deployment.
   * `/monitoring`: Contains YAML files and documentation for setting up monitoring and alerts for the trading bot.
   * `/network-configs`: Contains netplan configurations and ingress rules for Headlamp and Grafana.
-  * `/trading-bot`: Contains YAML files for bot deployment, along with documentation on the setup of Kubernetes, Docker and configuration of the trading bot.
   * `/scripts`: Contains bash scripts for sleep, wakeup and healthcheck, as well as documentation on their setup and use.
   * `/trading-bot`: Contains YAML and Docker setup/configuration files, as well as comprehensive documentation on the setup process of the trading bot using Docker, Redis Cache, Secrets and more.
  
@@ -109,7 +109,7 @@ Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load 
 * **GitHub Actions CI/CD Pipeline**: Any change made to the trading bot repo is automatically reflected in the k3s cluster using the GitHub Actions pipeline. This allows for rapid deployment and bug-fixing of the payload.
 * **Node Failover:** If one of the nodes suffers a power failure or crashes in some way, the pods running on it are evicted automatically and moved to a healthy node, in turn further strengthening uptime even when encountering full system failures. This cluster's high-availability configuration protects against: (1) node failures, (2) container/process failures, (3) bad deployments from GitHub.
 * **Outsourced Workload:** The trading bot runs in a Python script locally while trade executions, live market data and news headlines are pushed/pulled via external API calls.
-* **Node Failure Alerts**: Alerts are sent via Telegram if any pod or node goes down. This is managed by Alertsmanager, which monitors node and pod health to ensure the cluster and its operations stays intact.
+* **Node Failure Alerts**: Alerts are sent via Telegram if any pod or node goes down. This is managed by Alertmanager, which monitors node and pod health to ensure the cluster and its operations stays intact.
 
 ## Architectural Decisions
 * Since the trading bot relies on the Google Gemini API for part of its vital decisions and logic, I initially evaluated running a local quantized LLM (Gemma 2B) directly on the nodes in order to lessen dependency on external APIs. After evaluation of the hardware available to me, however, it was revealed that running a local LLM model would yield unacceptable latency of >20s. This is not exactly optimal for time-bound trading decisions, therefore I decided that API calls were still the best course of action.
@@ -128,3 +128,22 @@ Seven significant issues were encountered, solved and documented in total, the m
 
 <br>During the long process of diagnosing and solving the issues, it was made clear that even one small mistake in the network configuration settings, YAML deployment files or trading bot code can cause a complete outage. Default configurations, both in UEFI and Linux, are likely to cause issues so special care must be taken in the initial configuration process.
 <br><br>Another major hurdle was the correct identification of issues in the first place-- with the completely headless design, these issues often resulted in disconnects, making it difficult to diagnose. Some issues could only be resolved with access to a video output source. This may not be possible in many environments, therefore I learned that changes must be made carefully and incompatibilities resolved fully before applying anything.
+
+## Skills Demonstrated
+The most significant skills demonstrated during the development of this project are:
+* Kubernetes (k3s)
+* Docker/Container Orchestration
+* GitHub Actions CI/CD Pipeline
+* PXE Network Booting
+* Tailscale
+* Prometheus/Grafana/Alertmanager
+* Python/REST APIs
+* Linux Server Administration
+* Wake-on-LAN and Time-based Power Management (Cron)
+* Hardware Modification and Diagnostics
+
+## Roadmap
+The current implementation still has some weak points in the case of a failure. Planned improvements include:
+* Longhorn distributed storage to eliminate Redis point of failure (Longhorn PVC)
+* Node death testing with ChaosMonkey to validate failover
+* Tweak trading strategy tolerances and parameters to increase profitability
