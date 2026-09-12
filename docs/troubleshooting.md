@@ -48,7 +48,14 @@ EOF'
 * Cause: Another process, Traefik, was intercepting traffic to 192.168.1.16:80 as its own.
 * Solution: Moved nginx to port 192.168.1.16:8888, a port with no other processes listening.
 
+
 **9/9/2026 | Issue 6: Trading Bots Failed Connection to Internal Redis Instance**
 * Symptom: The trading bots were unable to connect to the Redis instance, leading to errors.
 * Cause: Host & DNS mismatch -- trading bot code lacked clear routing for Redis inside the k3s instance; Redis process could not be identified.
 * Solution: Configuration added to trading bot code, explicitly pointing to the k3s internal DNS `redis.trading.svc.cluster.local`
+
+
+**9/9/2026 | Issue 7: Headlamp, Grafana UIs Unable to be Accessed**
+* Symptom: The Headlamp and Grafana UIs were unable to be accessed through browser despite correct ingress rules.
+* Cause: Ingress rules were being overridden by traffic on the same port (since many processes were running on the K3s port).
+* Solution: Rebuilt the K3s instance, changing the default port in order to allow traffic from outside to reach the UI hosting node (Wyse 3040). Traffic no longer intercepts port; Headlamp and Grafana are able to be accessed.
