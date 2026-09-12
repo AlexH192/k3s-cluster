@@ -107,7 +107,7 @@ Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load 
 * **Fully remote/automatic OS installation and provisioning:** The worker nodes' operating systems are set up completely automatically via PXE boot and the injected network configuration settings. Once set up, they automatically request (and are assigned) an IP, connecting them to the rest of the network and, most importantly, the master node.
 * **Trading bot run via K3s with Docker:** Containerizing the trading bot application allows for better management of computing power and gives access to advanced failover features. When a pod crashes, Kubernetes instantly detects and restarts it in order to maintain maximum uptime. When an update to the trading bot is pushed to the node, Kubernetes executes a rolling update in order to minimize downtime during deployment.
 * **GitHub Actions CI/CD Pipeline**: Any change made to the trading bot repo is automatically reflected in the k3s cluster using the GitHub Actions pipeline. This allows for rapid deployment and bug-fixing of the payload.
-* **Node Failover:** If one of the nodes suffers a power failure or crashes in some way, the pods running on it are evicted automatically and moved to a healthy node, in turn further strengthening uptime even when encountering full system failures.
+* **Node Failover:** If one of the nodes suffers a power failure or crashes in some way, the pods running on it are evicted automatically and moved to a healthy node, in turn further strengthening uptime even when encountering full system failures. This cluster's high-availability configuration protects against: (1) node failures, (2) container/process failures, (3) bad deployments from GitHub.
 * **Outsourced Workload:** The trading bot runs in a Python script locally while trade executions, live market data and news headlines are pushed/pulled via external API calls.
 * **Node Failure Alerts**: Alerts are sent via Telegram if any pod or node goes down. This is managed by Alertsmanager, which monitors node and pod health to ensure the cluster and its operations stays intact.
 
@@ -116,6 +116,7 @@ Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load 
 * Tailscale and SSH are the main ways to access the cluster, as opposed to local video-based access. The benefits of this decision are twofold:
   * Due to the headless design of the cluster, physically connecting to the node for access defeats the whole purpose, and would not be viable in a large-scale enterprise environment.
   * Remote access is now possible from anywhere with an internet connection. Previously, one could only connect from the same network. With Tailscale, SSH is now available from anywhere, allowing for remote troubleshooting and modification.
+* The monitoring dashboards are able to be accessed from anywhere as long as the device is connected to the K3s cluster via Tailscale -- I decided that the ability to monitor is just as important as the ability to access, therefore both should be able to be accessed remotely.
  
 ## Troubleshooting and Lessons Learned
 Seven significant issues were encountered, solved and documented in total, the most significant of which were related to headless networking and ingress rules(as documented in `/docs/troubleshooting.md`):
