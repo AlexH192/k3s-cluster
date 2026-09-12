@@ -1,14 +1,15 @@
-# Resolving Issues
+# Troubleshooting & Resolving Issues
+This file serves as documentation of the main issues encountered during the setup and configuration of the K3s cluster and trading bot.
 
 **29/3/2026 | Issue 1: Wi-Fi Card Failed due to Incompatibility**
 Error message returned upon checking status of Wi-Fi card:
-
+```
 !!! unknown header type 7f
 interrupt: pin ? routed to IRQ 23
 Region 0: memory at b2100000 (64-bit, non-prefetchable) [size=8K]
 Kernel modules: iwlwifi
 iwlwifi unable to change power state from d3cold to hw_rev=0xFFFFFFFF, PCI issues?
-
+```
 * Symptom: Wi-Fi functionality unavailable
 * Cause: Wi-Fi card header is unknown to the motherboard, causing power to be cut off from the component, in turn leading to failure to communicate.
 * Solution: Physically removed the incompatible card and pivoted to internet connection per ethernet instead of wireless.
@@ -55,7 +56,7 @@ EOF'
 * Solution: Configuration added to trading bot code, explicitly pointing to the k3s internal DNS `redis.trading.svc.cluster.local`
 
 
-**9/9/2026 | Issue 7: Headlamp, Grafana UIs Unable to be Accessed**
+**11/9/2026 | Issue 7: Headlamp, Grafana UIs Unable to be Accessed**
 * Symptom: The Headlamp and Grafana UIs were unable to be accessed through browser despite correct ingress rules.
 * Cause: Ingress rules were being overridden by traffic on the same port (since many processes were running on the K3s port).
 * Solution: Rebuilt the K3s instance, changing the default port in order to allow traffic from outside to reach the UI hosting node (Wyse 3040). Traffic no longer intercepts port; Headlamp and Grafana are able to be accessed.
