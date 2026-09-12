@@ -118,9 +118,11 @@ Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load 
   * Remote access is now possible from anywhere with an internet connection. Previously, one could only connect from the same network. With Tailscale, SSH is now available from anywhere, allowing for remote troubleshooting and modification.
  
 ## Troubleshooting and Lessons Learned
-Six significant issues were encountered, solved and documented in total, the most significant of which were related to headless networking (as documented in `/docs/troubleshooting.md`):
+Seven significant issues were encountered, solved and documented in total, the most significant of which were related to headless networking and ingress rules(as documented in `/docs/troubleshooting.md`):
 * Headless network connection failed due to misconfigured netplan file
 * Network interface perpetual low-power state due to misconfigured boot parameters
+* Traffic to monitoring UIs being blocked by K3s traffic on the same port
+* Internal Redis instance connection failure
 
 
 <br>During the long process of diagnosing and solving the issues, it was made clear that even one small mistake in the network configuration settings, YAML deployment files or trading bot code can cause a complete outage. Default configurations, both in UEFI and Linux, are likely to cause issues so special care must be taken in the initial configuration process.
