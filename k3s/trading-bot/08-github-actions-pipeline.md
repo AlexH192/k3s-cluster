@@ -1,5 +1,5 @@
 # GitHub Actions CI/CD Pipeline Setup
-Currently, if any change is made to the trading bot python files, the docker image must be rebuilt manually and the nodes restarted, which is both time consuming and inefficient. With the use of a CI/CD pipeline, any change to the trading bot's GitHub repository will automatically be reflected in the k3s deployment too. The process will work as follows:
+Currently, if any change is made to the trading bot python files, the docker image must be rebuilt manually and the nodes restarted, which is both time consuming and inefficient. With the use of a CI/CD pipeline, any change to the trading bot's GitHub repository will automatically be reflected in the k3s deployment too. A Telegram notification is also sent after each deployment, indicating its status and success. The process will work as follows:
 ```
 1. Changes pushed to GitHub repo's main branch
 2. GitHub Actions builds a new Docker image
@@ -9,7 +9,7 @@ Currently, if any change is made to the trading bot python files, the docker ima
 6. Wake.sh checks for pending update and applies it.
 ```
 First, secrets must be added to the trading bot GitHub repo. This is done by navigating to `Settings > Secrets and Variables > Actions > New Repository Secret`.
-<br>The secrets added are: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `TAILSCALE_AUTHKEY`.
+<br>The secrets added are: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `TAILSCALE_AUTHKEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (a new Telegram bot should be created for this).
 <br><br>Creating workflow directory and deployment:
 ```
 mkdir -p ~/k3s-cluster/.github/workflows
@@ -60,5 +60,5 @@ git config --global credential.helper store
 ```
 The success of the push can be monitored in the Actions tab of the GitHub repo. Once successful, it should look like the image below:
 <img width="699" height="333" alt="image" src="https://github.com/user-attachments/assets/8505ee5a-0f8c-42d9-beea-c1efbf6439e9" />
-<br>Every time the GitHub repo is updated now (whether that be locally with Git or from the web interface), the GitHub CI/CD pipeline builds a new docker image, pushes it to Docker Hub, and executes a rolling update on the cluster.
+<br>Every time the GitHub repo is updated now (whether that be locally with Git or from the web interface), the GitHub CI/CD pipeline builds a new docker image, pushes it to Docker Hub, and executes a rolling update on the cluster. A Telegram notification is sent via the GitHub status bot created on Telegram.
 <br><br>One of the advantages of using the GitHub Actions CI/CD pipeline is that uptime is guaranteed with rolling updates. Additionally, if the code for only one of the trading bots is updated (for example: commodities bot), then only that bot's pod/container needs to restart.
