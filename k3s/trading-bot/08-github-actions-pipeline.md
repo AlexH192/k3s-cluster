@@ -60,7 +60,7 @@ git config --global credential.helper store
 ```
 The success of the push can be monitored in the Actions tab of the GitHub repo. Once successful, it should look like the image below:
 <img width="699" height="333" alt="image" src="https://github.com/user-attachments/assets/8505ee5a-0f8c-42d9-beea-c1efbf6439e9" />
-<br>Every time the GitHub repo is updated now (whether that be locally with Git or from the web interface), the GitHub CI/CD pipeline builds a new docker image, pushes it to Docker Hub, and executes a rolling update on the cluster. A Telegram notification is sent via the GitHub status bot created on Telegram. A success notification is shown in the image below.
+<br>Every time the GitHub repo is updated now (whether that be locally with Git or from the web interface), the GitHub CI/CD pipeline builds a new docker image, pushes it to Docker Hub, and executes a rolling update on the cluster. Certain files, like `README`, `.env_example` and `.gitignore` are not included in the push. A Telegram notification is sent via the GitHub status bot created above; an example of a success notification is shown in the image below.
 <br><br><img width="434" height="92" alt="image" src="https://github.com/user-attachments/assets/ea5b4a07-023a-4c35-9dcb-d6a8dd3c983c" />
 
 <br>One of the advantages of using the GitHub Actions CI/CD pipeline is that uptime is guaranteed with rolling updates. Additionally, if the code for only one of the trading bots is updated (for example: commodities bot), then only that bot's pod/container needs to restart.
