@@ -130,6 +130,11 @@ Seven significant issues were encountered, solved and documented in total, the m
 <br>During the long process of diagnosing and solving the issues, it was made clear that even one small mistake in the network configuration settings, YAML deployment files or trading bot code can cause a complete outage. Default configurations, both in UEFI and Linux, are likely to cause issues so special care must be taken in the initial configuration process.
 <br><br>Another major hurdle was the correct identification of issues in the first place-- with the completely headless design, these issues often resulted in disconnects, making it difficult to diagnose. Some issues could only be resolved with access to a video output source. This may not be possible in many environments, therefore I learned that changes must be made carefully and incompatibilities resolved fully before applying anything.
 
+# Known Limitations & Risk Considerations
+* Currently, Redis is a single point of failure. If the node running Redis fails, the cache is lost.
+* No idempotency on trade executions: if cluster thinks the node running the bot is dead, creates a new instance and that instance executes a trade while the first bot is still alive, trades are duplicated.
+* No staging gate before deployment on the GitHub Actions CI/CD Pipeline. The bot is only tested for syntax, not for logic errors.
+
 ## Skills Demonstrated
 The most significant skills demonstrated during the development of this project are:
 * Kubernetes (k3s)
