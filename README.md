@@ -4,7 +4,7 @@
 
 The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and commodities, placing trades via an API connection. The trading bot itself uses a self-developed Opening Range Breakout (ORB) and liquidity sweep strategy, paired with strict parameter-based Gemini API decision-making to execute trades during US market sessions.
 <a href="https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents.git" target="_blank" rel="noopener noreferrer">Trading Bot Repository</a>
-<br>Changes made to the repo above are automatically pushed to the K3s cluster via GitHub Actions CI/CD pipeline, enabling quick deployment of changes and rapid bug fixes.
+<br><br>Changes made to the repo above are automatically pushed to the K3s cluster via GitHub Actions CI/CD pipeline, enabling quick deployment of changes and rapid bug fixes.
 
 ## Architecture and Topology
 The physical cluster consists of three repurposed thin-client computers connected via an unmanaged 8-port gigabit switch. The most powerful computer, a Dell Wyse 5070, is used as the main access point and control plane (master node). It also serves as the PXE boot server that provisions the two other worker nodes over the network upon first setup.
