@@ -2,7 +2,7 @@
 ![Build Status](https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents/actions/workflows/deploy.yml/badge.svg)
 <br><br>This project is a three-node, bare-metal Kubernetes cluster built on repurposed enterprise thin clients, featuring automated PXE OS installation & configuration, time-based power management and high-availability architecture to ensure maximum uptime.
 
-The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and commodities, placing trades via an API connection. The trading bot itself uses a self-developed Opening Range Breakout (ORB) and liquidity sweep strategy, paired with strict parameter-based Gemini API decision-making to execute trades during US market sessions.
+The cluster serves as the infrastructure for a custom algorithmic stock trading bot tracking equities and commodities, placing trades via an API connection. The trading bot itself uses a self-developed Opening Range Breakout (ORB) and liquidity sweep strategy, paired with strict decision-making via the Gemini API to execute trades during US market sessions.
 <a href="https://github.com/AlexH192/Python-trading-bot-Alpaca-Gemini-Currents.git" target="_blank" rel="noopener noreferrer">Trading Bot Repository</a>
 <br><br>Changes made to the repo above are automatically pushed to the K3s cluster via GitHub Actions CI/CD pipeline, enabling quick deployment of changes and rapid bug fixes.
 
