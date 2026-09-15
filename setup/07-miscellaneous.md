@@ -1,4 +1,4 @@
-# Power Management & Miscellaneous
+# Miscellaneous
 
 ## Wake-on-LAN
 Wake-on-LAN was enabled and made persistent in `05-cluster-setup.md`.
@@ -9,7 +9,7 @@ Wake-on-LAN was enabled and made persistent in `05-cluster-setup.md`.
 
 <br>Wake-on-LAN commands are as follows:
 To put system to sleep, run (while connected via SSH): `sudo systemctl suspend`
-To wake system up, run (in a terminal window on the external device connected via Tailscale): `wakeonlan [MAC address here]`
+<br>To wake system up, run (in a terminal window on the external device connected via Tailscale): `wakeonlan [MAC address here]`
 
 <br>After the system wakes up, SSH connection can be performed via `ssh username@hostname` (in my case: `ssh admin@k3s-master`).
 
