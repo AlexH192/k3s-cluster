@@ -63,43 +63,27 @@ This repository separates OS-level setup and hardware configuration documents fr
   * `/scripts`: Contains bash scripts for sleep, wakeup and healthcheck, as well as documentation on their setup and use.
   * `/trading-bot`: Contains YAML and Docker setup/configuration files, as well as comprehensive documentation on the setup process of the trading bot using Docker, Redis Cache, Secrets and more.
  
-## Node Hardware Specifications
-Each node is a different model of thin client with different specifications, meaning considerations regarding performance and workload had to be be made so as not to overload any of the systems.
-```
-Node Role  |  Hardware Model  |  CPU          |  RAM    |  Storage
---------------------------------------------------------------------
-Master     |  Dell Wyse 5070  | Intel Pentium | 8GB DDR4| 128GB SSD
-Node       |                  | Silver J5005  |         |      
---------------------------------------------------------------------
-Worker     |  Dell Wyse 3040  | Intel Atom    | 2GB DDR3| 8GB eMMC
-Node 1     |                  | x5-Z8350      |         |
---------------------------------------------------------------------
-Worker     |  HP t630         | AMD GX-420GI  | 4GB DDR4| 16GB eMMC
-Node 2     |                  |               |         |
+### Node Hardware Specifications
+Each node is a different model of thin client with different specifications, meaning considerations regarding performance and workload had to be made so as not to overload any of the systems.
 
-```
-## Cost Breakdown
+| Node Role | Hardware Model | CPU | RAM | Storage |
+| :--- | :--- | :--- | :--- | :--- |
+| **Master Node** | Dell Wyse 5070 | Intel Pentium Silver J5005 | 8GB DDR4 | 128GB SSD |
+| **Worker Node 1** | Dell Wyse 3040 | Intel Atom x5-Z8350 | 2GB DDR3 | 8GB eMMC |
+| **Worker Node 2** | HP t630 | AMD GX-420GI | 4GB DDR4 | 16GB eMMC |
+
+### Cost Breakdown
 Most parts were purchased second-hand from individuals who had previously used them in enterprise environments. The cost breakdown, in Singapore Dollars, is below.
 
-
-```
- Component                                                                     | Cost   | Source
----------------------------------------------------------------------------------------------------------
-Dell Wyse 5070 + Dell Wyse 3040                                                |  S$120  |  Carousell
----------------------------------------------------------------------------------------------------------
-HP t630 + 4GB RAM upgrade + 128GB SSD upgrade                                  |  S$55   |  Carousell
----------------------------------------------------------------------------------------------------------
-Cisco 8-port Gigabit switch                                                    |  S$10   |  Carousell
----------------------------------------------------------------------------------------------------------
-CMOS battery replacement                                                       |  S$7    |  Local Store
----------------------------------------------------------------------------------------------------------
-4x CAT6 Ethernet Cable                                                         |  S$4.48 |  Online Store
----------------------------------------------------------------------------------------------------------
-Miscellaneous costs (6-plug 2-meter power strip, DisplayPort to HDMI adapter)  |  S$10.17|  Online Store
----------------------------------------------------------------------------------------------------------
-
-Total                                                                             S$206.65
-```
+| Component | Cost | Source |
+| :--- | :--- | :--- |
+| Dell Wyse 5070 + Dell Wyse 3040 | S$120 | Carousell |
+| HP t630 + 4GB RAM upgrade + 128GB SSD upgrade | S$55 | Carousell |
+| Cisco 8-port Gigabit switch | S$10 | Carousell |
+| CMOS battery replacement | S$7 | Local Store |
+| 4x CAT6 Ethernet Cable | S$4.48 | Online Store |
+| Miscellaneous costs (6-plug 2-meter power strip, DisplayPort to HDMI adapter) | S$10.17 | Online Store |
+| **Total** | **S$206.65** | |
 
 Equivalent cloud infrastructure (3 nodes with ~150GB storage, 12GB RAM and load balancing) can cost upwards of $120 per month, plus miscellaneous fees, with cloud providers like AWS. This cluster offers superior control while essentially paying for itself in under two months.
 
