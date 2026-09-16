@@ -44,24 +44,22 @@ When hosting the trading bot, the server also contacts external APIs to pull inf
 ## Repository Structure
 This repository separates OS-level setup and hardware configuration documents from the Kubernetes configurations.
 
-* `/autoinstall` contains the files required for the headless installation of Linux Server:
-  * `grub.cfg`: Boot menu configuration
-  * `user-data` and `meta-data`: Cloud-init files for automatic disk formatting, OS installation, user setup and network settings
- 
-* `/docs` contains general documentation about the physical cluster and troubleshooting steps.
-  * `architecture.md`: Exact representation of the cluster's hardware and software architecture.
-  * `hardware-upgrades.md`: List of hardware upgrades made to each machine in the cluster.
-  * `troubleshooting.md`: Documentation on every issue encountered and how these issues were solved.
- 
-* `/photos` contains pictures of the hardware and setup processes.
- 
-* `/setup` contains documentation on how each part of the system was set up, step-by-step.
-
-* `/k3s/` contains cluster data and documentation for k3s and trading bot deployment.
-  * `/monitoring`: Contains YAML files and documentation for setting up monitoring and alerts for the trading bot.
-  * `/network-configs`: Contains netplan configurations and ingress rules for Headlamp and Grafana.
-  * `/scripts`: Contains bash scripts for sleep, wakeup and healthcheck, as well as documentation on their setup and use.
-  * `/trading-bot`: Contains YAML and Docker setup/configuration files, as well as comprehensive documentation on the setup process of the trading bot using Docker, Redis Cache, Secrets and more.
+| Path | Description |
+| :--- | :--- |
+| `/autoinstall` | Files required for the headless installation of Linux Server |
+| &nbsp;&nbsp;&nbsp;&nbsp;`grub.cfg` | Boot menu configuration |
+| &nbsp;&nbsp;&nbsp;&nbsp;`user-data` & `meta-`&nbsp;&nbsp;&nbsp;&nbsp;`data` | Cloud-init files for automatic disk formatting, OS installation, user setup and network settings |
+| `/docs` | General documentation about the physical cluster and troubleshooting steps |
+| &nbsp;&nbsp;&nbsp;&nbsp;`architecture.md` | Exact representation of the cluster's hardware and software architecture |
+| &nbsp;&nbsp;&nbsp;&nbsp;`hardware-upgrades.md` | List of hardware upgrades made to each machine in the cluster |
+| &nbsp;&nbsp;&nbsp;&nbsp;`troubleshooting.md` | Documentation on every issue encountered and how these issues were solved |
+| `/photos` | Pictures of the hardware and setup processes |
+| `/setup` | Documentation on how each part of the system was set up, step-by-step |
+| `/k3s` | Cluster data and documentation for k3s and trading bot deployment |
+| &nbsp;&nbsp;&nbsp;&nbsp;`/monitoring` | YAML files and documentation for setting up monitoring and alerts for the trading bot |
+| &nbsp;&nbsp;&nbsp;&nbsp;`/network-configs` | Netplan configurations and ingress rules for Headlamp and Grafana |
+| &nbsp;&nbsp;&nbsp;&nbsp;`/scripts` | Bash scripts for sleep, wakeup and healthcheck, as well as documentation on their setup and use |
+| &nbsp;&nbsp;&nbsp;&nbsp;`/trading-bot` | YAML and Docker setup/configuration files, as well as comprehensive documentation on the setup process of the trading bot using Docker, Redis Cache, Secrets and more |
  
 ### Node Hardware Specifications
 Each node is a different model of thin client with different specifications, meaning considerations regarding performance and workload had to be made so as not to overload any of the systems.
