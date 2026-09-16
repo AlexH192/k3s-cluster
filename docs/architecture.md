@@ -64,42 +64,42 @@ graph TD
 ## Network Port Allocation
 The following tables define all static network ports allocated across host infrastructure, K3s internal services, and application workloads.
 
-### 1. Host & Infrastructure Services (Dell Wyse 5070 Master Node)
+### 1. Host & Infrastructure Services
 These ports run directly on the host OS (`192.168.1.16`) to support node provisioning and external cluster access:
 
 | Port | Protocol | Service / Component | Purpose |
 | :--- | :--- | :--- | :--- |
-| **22** | TCP | OpenSSH | Master/Worker node administration via Tailscale SSH |
-| **67 / 68** | UDP | `dnsmasq` (DHCP) | Proxy-DHCP server for PXE network booting |
-| **69** | UDP | TFTP Server | Delivers initial PXE bootloader (GRUB) to new thin clients |
-| **8888** | TCP | Nginx Host | Serves Ubuntu ISO kernel images and `cloud-init` scripts |
+| **22** | TCP | OpenSSH | Master/Worker node access via Tailscale SSH |
+| **67 / 68** | UDP | `dnsmasq` (DHCP) | Proxy DHCP server for PXE booting |
+| **69** | UDP | TFTP Server | Delivers initial PXE bootloader (GRUB) to new nodes before Ubuntu installation|
+| **8888** | TCP | Nginx Host | Serves Ubuntu ISO image and `cloud-init` script to new nodes |
 | **38413** | TCP | K3s API Server | `kubectl` & cluster management |
 
 Note: `dnsmasq` DNS (port 53) is disabled (`port=0`) to avoid conflicting with CoreDNS, which handles all internal cluster DNS resolution.
 
-### 2. K3s Ingress & Workload Ports
+### 2. K3s Ingress & Workloads
 These ports are managed on the worker nodes (`192.168.1.17` & `192.168.1.18`):
 
 | Port | Protocol | Service / Component | Purpose |
 | :--- | :--- | :--- | :--- |
-| **80** | TCP | Traefik Ingress (HTTP) | External HTTP entry point for cluster traffic |
-| **443** | TCP | Traefik Ingress (HTTPS) | External HTTPS entry point for cluster traffic |
-| **30080** | TCP | Headlamp UI (NodePort) | Web-based Kubernetes dashboard, externally accessible |
+| **80** | TCP | Traefik Ingress (HTTP) | HTTP entry point for cluster traffic |
+| **443** | TCP | Traefik Ingress (HTTPS) | HTTPS entry point for cluster traffic |
+| **30080** | TCP | Headlamp UI (NodePort) | Web-based Headlamp monitoring dashboard, externally accessible |
 | **30081** | TCP | Grafana UI (NodePort) | Web-based Grafana monitoring dashboard, externally accessible |
-| **6379** | TCP | Redis Cache (ClusterIP) | Internal shared state & cache for trading bot — not externally exposed |
-| **9090** | TCP | Prometheus (ClusterIP) | Internal cluster metrics collection — not externally exposed |
+| **6379** | TCP | Redis Cache (ClusterIP) | Internal cache for trading bot — not externally exposed |
+| **9090** | TCP | Prometheus (ClusterIP) | Internal performance data collection — not externally exposed |
 
 
-### 3. Outbound External API Connections
-The trading bot pod establishes outgoing connections over standard encrypted ports:
+### 3. Outbound API Connections
+The trading bot pod establishes outgoing connections to external APIs over the standard encrypted port 443:
 
 | Port | Protocol | Remote Endpoint | Purpose |
 | :--- | :--- | :--- | :--- |
-| **443** | TCP / WSS | `stream.data.alpaca.markets` | Real-time market data WebSocket stream |
+| **443** | TCP / WSS | `stream.data.alpaca.markets` | Real-time market data Websocket stream |
 | **443** | TCP | `api.alpaca.markets` | Trade execution REST API |
-| **443** | TCP | `api.currentsapi.services` | Financial news sentiment REST polling |
-| **443** | TCP | `generativelanguage.googleapis.com` | Gemini API trade analysis & decision engine |
-| **443** | TCP | `api.telegram.org` | Push notifications for daily summaries & trade alerts |
+| **443** | TCP | `api.currentsapi.services` | News headlines REST API |
+| **443** | TCP | `generativelanguage.googleapis.com` | Gemini API for trade decisions |
+| **443** | TCP | `api.telegram.org` | Push notifications for daily summaries, trade alerts, cluster notifications |
 
 ## Headless OS installation
 New nodes are provisioned completely automatically via a PXE server/Cloud-init method:
