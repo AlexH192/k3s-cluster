@@ -1,0 +1,6 @@
+
+# Wake cluster at 9:25 AM Monday-Friday (before market open)
+25 9 * * 1-5 /home/admin/k3s-cluster/k3s/scripts/wake.sh >> /var/log/k3s-wake.l>
+
+# Sleep cluster at 4:05 PM Monday-Friday (after market close)
+5 16 * * 1-5 /home/admin/k3s-cluster/k3s/scripts/sleep.sh >> /var/log/k3s-sleep>
